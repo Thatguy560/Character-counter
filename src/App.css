@@ -2,12 +2,8 @@
   text-align: center;
 }
 
-.App h2 {
-  color: black;
-}
-
 .App-header {
-  background-color: #282c34;
+  background-color: lightgrey;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,15 +13,29 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App h1 {
+  color: #5bc0de;
+  font-family: "Chalkduster";
+  letter-spacing: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App p {
+  color: #424d61;
+  text-align: center;
 }
+
+.App textarea {
+  min-width: 750px; /* Do as a percentage instead so it fits on all screens? */
+  min-height: 350px; /* Do as a percentage instead so it fits on all screens? */
+  display: center;
+  border: 2px solid grey;
+  border-radius: 1.5%;
+  padding: 15px;
+  font-size: 16px;
+}
+
+/* .App h2 {
+  color: black;
+} */
+
+
