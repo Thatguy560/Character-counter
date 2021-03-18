@@ -6,24 +6,29 @@ class App extends Component {
     super(props);
     this.state = {
       firstValue: "",
+      characterCount: "",
     };
   }
 
-  firstHandle = (e) => {
+  firstHandle = (event) => {
+    const characterCount =
+      event.target.value === "" ? 0 : event.target.value.split("").length;
     this.setState({
-      firstValue: e.target.value,
+      firstValue: event.target.value,
+      characterCount: characterCount,
     });
   };
 
   render() {
+    var characterCount = this.state.characterCount;
     return (
       <div className="App">
         <header className="App-header">
           <form>
             <h1>Character Counter</h1>
             <p>
-              Characters <span>test</span> Words <span>test</span> Lines{" "}
-              <span>test</span> Without White Space <span>test</span>
+              Characters <span>{characterCount}</span> Words <span>test</span>{" "}
+              Lines <span>test</span> Without White Space <span>test</span>
             </p>
             <textarea
               type="text"
