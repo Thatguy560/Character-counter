@@ -20,15 +20,16 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <form>
-            <h1>Character Count</h1>
+            <h1>Character Counter</h1>
             <p>
-              Characters {} Words {} Lines {}
+              Characters <span>test</span> Words <span>test</span> Lines{" "}
+              <span>test</span> Without White Space <span>test</span>
             </p>
             <textarea
               type="text"
               placeholder="Please type some text..."
-              value={this.firstHandle}
-              onChange={"test2"}
+              value={this.firstValue}
+              onChange={this.firstHandle}
             />
           </form>
         </header>
