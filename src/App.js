@@ -7,30 +7,48 @@ class App extends Component {
     this.state = {
       firstValue: "",
       characterCount: "",
+      withoutWhiteSpace: "",
+      words: "",
+      lines: "",
     };
   }
 
   firstHandle = (event) => {
-    const characterCount =
-      event.target.value === "" ? 0 : event.target.value.split("").length;
+    const input = event.target.value;
+    const characterCount = input === "" ? 0 : input.split("").length;
+    const withoutWhiteSpace =
+      input === "" ? 0 : input.split("").filter((char) => char !== " ").length;
+    const words = input === "" ? 0 : input.split(" ").length;
+    const lines = input === "" ? 1 : input.split("\n").length;
     this.setState({
-      firstValue: event.target.value,
+      firstValue: input,
       characterCount: characterCount,
+      withoutWhiteSpace: withoutWhiteSpace,
+      words: words,
+      lines: lines,
     });
   };
 
   render() {
     var characterCount = this.state.characterCount;
+    var withoutWhiteSpace = this.state.withoutWhiteSpace;
+    var words = this.state.words;
+    var lines = this.state.lines;
+    console.log(document.getElementById("textarea"));
+
     return (
       <div className="App">
         <header className="App-header">
           <form>
             <h1>Character Counter</h1>
             <p>
-              Characters <span>{characterCount}</span> Words <span>test</span>{" "}
-              Lines <span>test</span> Without White Space <span>test</span>
+              Characters <span>{characterCount}</span> Without White Space{" "}
+              <span>{withoutWhiteSpace}</span> Words <span>{words}</span> Lines
+              {"  "}
+              <span>{lines}</span>
             </p>
             <textarea
+              // id="id"
               type="text"
               placeholder="Please type some text..."
               value={this.firstValue}
