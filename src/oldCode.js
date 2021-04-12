@@ -37,28 +37,39 @@ class App extends Component {
     });
   };
 
-  wordFrequencyCounter = (e) => {
+  // This function will be responsible for the word counting
+  wordCounter = (e) => {
     e.preventDefault();
-    var freqMap = {};
+    var keys = [];
+    var counts = {};
     const input = this.state.firstValue
       .replace(/\W/g, " ")
       .replace(/[0-9]/g, " ")
-      .toLowerCase()
       .split(" ")
       .filter((word) => word.trim());
-
-    input.forEach((w) => {
-      if (!freqMap[w]) {
-        freqMap[w] = 0;
+    // console.log(input);
+    for (let i = 0; i < input.length; i++) {
+      var word = input[i];
+      if (counts[word] === undefined) {
+        counts[word] = 1;
+        keys.push(word);
+      } else {
+        counts[word] += 1;
+        keys.push(word);
+        // console.log(keys);
       }
-      freqMap[w] += 1;
-    });
+      keys.sort();
 
-    console.log(freqMap);
-
-    this.setState({
-      wordSelectionCount: freqMap,
-    });
+      for (let i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var result = key + " - " + counts[key];
+        // console.log(result);
+      }
+      this.setState({
+        wordSelectionCount: result,
+        // wordSelectionCount: input,
+      });
+    }
   };
 
   render() {
@@ -66,7 +77,9 @@ class App extends Component {
     var withoutWhiteSpace = this.state.withoutWhiteSpace;
     var words = this.state.numberOfWords;
     var lines = this.state.linesCount;
-    var wordCounts = this.state.wordSelectionCount;
+    console.log(this.state.wordSelectionCount);
+    // var wordCounts = this.state.wordSelectionCount;
+    // console.log(wordCounts);
 
     return (
       <div className="App">
@@ -85,21 +98,25 @@ class App extends Component {
               value={this.firstValue}
               onChange={this.firstHandle}
             />
-            {/* This button calls the wordFrequencyCounter Method which counts the Word frequencies */}
-            <button className="btn" onClick={this.wordFrequencyCounter}>
-              Check Word Frequency
+            <h1>Word Counting</h1>
+            {/* This button calls the wordCounter Method which should display all the Word listings */}
+            <button className="btn" onClick={this.wordCounter}>
+              Words Count
             </button>
-            <h1>Word Frequency</h1>
-            {Object.entries(wordCounts).map(([word, count], i) => {
-              return (
-                <div key={i}>
+
+            {/* Have a feature which displays certain words and counts them for much they're used */}
+            <p>
+              <span>{this.state.wordSelectionCount}</span>
+            </p>
+
+            {/* {this.state.wordSelectionCount &&
+              Object.keys(this.state.wordSelectionCount).map((word, index) => {
+                return (
                   <p>
-                    <span>{word[0].toUpperCase() + word.slice(1)}</span> -{" "}
-                    {count} {count > 1 ? "Times" : "Time"}
+                    <span>{this.state.wordSelectionCount[word]}</span> - {word}
                   </p>
-                </div>
-              );
-            })}
+                );
+              })} */}
           </form>
         </header>
       </div>
