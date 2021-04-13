@@ -17,6 +17,7 @@ class App extends Component {
   firstHandle = (event) => {
     var input = event.target.value;
 
+    // Used to work out how many new lines have been entered in text box (Still needs to be fixed.)
     const text = document.getElementById("textarea").value;
     const linesCount = text.split("/\r|\r\n|\n/").length;
 
@@ -40,21 +41,19 @@ class App extends Component {
   wordFrequencyCounter = (e) => {
     e.preventDefault();
     var freqMap = {};
-    const input = this.state.firstValue
+    const wordsWithoutSpecialChars = this.state.firstValue
       .replace(/\W/g, " ")
       .replace(/[0-9]/g, " ")
       .toLowerCase()
       .split(" ")
       .filter((word) => word.trim());
 
-    input.forEach((w) => {
+    wordsWithoutSpecialChars.forEach((w) => {
       if (!freqMap[w]) {
         freqMap[w] = 0;
       }
       freqMap[w] += 1;
     });
-
-    console.log(freqMap);
 
     this.setState({
       wordSelectionCount: freqMap,
@@ -66,7 +65,7 @@ class App extends Component {
     var withoutWhiteSpace = this.state.withoutWhiteSpace;
     var words = this.state.numberOfWords;
     var lines = this.state.linesCount;
-    var wordCounts = this.state.wordSelectionCount;
+    var wordFrequencyCount = this.state.wordSelectionCount;
 
     return (
       <div className="App">
@@ -90,12 +89,12 @@ class App extends Component {
               Check Word Frequency
             </button>
             <h1>Word Frequency</h1>
-            {Object.entries(wordCounts).map(([word, count], i) => {
+            {Object.entries(wordFrequencyCount).map(([word, count], i) => {
               return (
                 <div key={i}>
                   <p>
                     <span>{word[0].toUpperCase() + word.slice(1)}</span> -{" "}
-                    {count} {count > 1 ? "Times" : "Time"}
+                    {count > 1 ? `${count} Times` : "1 Time"}
                   </p>
                 </div>
               );
