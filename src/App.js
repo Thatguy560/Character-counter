@@ -42,7 +42,7 @@ class App extends Component {
     e.preventDefault();
     var freqMap = {};
     const wordsWithoutSpecialChars = this.state.firstValue
-      .replace(/\W/g, " ")
+      .replace(/[^A-Za-z']/g, " ")
       .replace(/[0-9]/g, " ")
       .toLowerCase()
       .split(" ")
@@ -54,6 +54,7 @@ class App extends Component {
       }
       freqMap[w] += 1;
     });
+
     // let alphabeticSort = Object.keys(freqMap)
     //   .sort()
     //   .reduce((r, k) => ((r[k] = freqMap[k]), r), {});
@@ -73,6 +74,8 @@ class App extends Component {
     var words = this.state.numberOfWords;
     var lines = this.state.linesCount;
     var wordFrequencyCount = this.state.wordSelectionCount;
+
+    console.log(`test: ${this.state.firstValue}`);
 
     return (
       <div className="App">
