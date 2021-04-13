@@ -10,7 +10,6 @@ class App extends Component {
       withoutWhiteSpace: "",
       numberOfWords: "",
       linesCount: "",
-      wordSelectionCount: "",
     };
   }
 
@@ -34,48 +33,50 @@ class App extends Component {
       withoutWhiteSpace: withoutWhiteSpace,
       numberOfWords: words,
       linesCount: lines,
-      wordSelectionCount: "",
-    });
-  };
-
-  wordFrequencyCounter = (e) => {
-    e.preventDefault();
-    var freqMap = {};
-    const wordsWithoutSpecialChars = this.state.firstValue
-      .replace(/[^A-Za-z']/g, " ")
-      .replace(/[0-9]/g, " ")
-      .toLowerCase()
-      .split(" ")
-      .filter((word) => word.trim());
-
-    wordsWithoutSpecialChars.forEach((w) => {
-      if (!freqMap[w]) {
-        freqMap[w] = 0;
-      }
-      freqMap[w] += 1;
-    });
-
-    // let alphabeticSort = Object.keys(freqMap)
-    //   .sort()
-    //   .reduce((r, k) => ((r[k] = freqMap[k]), r), {});
-
-    const sortByHighest = Object.fromEntries(
-      Object.entries(freqMap).sort(([, a], [, b]) => b - a)
-    );
-
-    this.setState({
-      wordSelectionCount: sortByHighest,
     });
   };
 
   render() {
+    var firstValue = this.state.firstValue;
     var numberOfCharacters = this.state.numberOfCharacters;
     var withoutWhiteSpace = this.state.withoutWhiteSpace;
     var words = this.state.numberOfWords;
     var lines = this.state.linesCount;
-    var wordFrequencyCount = this.state.wordSelectionCount;
 
-    console.log(`test: ${this.state.firstValue}`);
+    function wordFrequencyCounter() {
+      let freqMap = {};
+      const wordsWithoutSpecialChars = firstValue
+        .replace(/[^A-Za-z']/g, " ")
+        .replace(/[0-9]/g, " ")
+        .toLowerCase()
+        .split(" ")
+        .filter((word) => word.trim());
+
+      wordsWithoutSpecialChars.forEach((w) => {
+        if (!freqMap[w]) {
+          freqMap[w] = 0;
+        }
+        freqMap[w] += 1;
+      });
+
+      const sortByHighest = Object.fromEntries(
+        Object.entries(freqMap).sort(([, a], [, b]) => b - a)
+      );
+
+      const wordsResult = Object.entries(sortByHighest).map(
+        ([word, count], i) => {
+          return (
+            <div key={i}>
+              <p>
+                <span>{word[0].toUpperCase() + word.slice(1)}</span> -{" "}
+                {count > 1 ? `${count} Times` : "1 Time"}
+              </p>
+            </div>
+          );
+        }
+      );
+      return wordsResult;
+    }
 
     return (
       <div className="App">
@@ -94,21 +95,8 @@ class App extends Component {
               value={this.firstValue}
               onChange={this.firstHandle}
             />
-            {/* This button calls the wordFrequencyCounter Method which counts the Word frequencies */}
-            <button className="btn" onClick={this.wordFrequencyCounter}>
-              Check Word Frequency
-            </button>
             <h1>Word Frequency</h1>
-            {Object.entries(wordFrequencyCount).map(([word, count], i) => {
-              return (
-                <div key={i}>
-                  <p>
-                    <span>{word[0].toUpperCase() + word.slice(1)}</span> -{" "}
-                    {count > 1 ? `${count} Times` : "1 Time"}
-                  </p>
-                </div>
-              );
-            })}
+            <div>{wordFrequencyCounter()}</div>
           </form>
         </header>
       </div>

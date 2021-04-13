@@ -17,6 +17,7 @@ class App extends Component {
   firstHandle = (event) => {
     var input = event.target.value;
 
+    // Used to work out how many new lines have been entered in text box (Still needs to be fixed.)
     const text = document.getElementById("textarea").value;
     const linesCount = text.split("/\r|\r\n|\n/").length;
 
@@ -37,39 +38,34 @@ class App extends Component {
     });
   };
 
-  // This function will be responsible for the word counting
-  wordCounter = (e) => {
+  wordFrequencyCounter = (e) => {
     e.preventDefault();
-    var keys = [];
-    var counts = {};
-    const input = this.state.firstValue
-      .replace(/\W/g, " ")
+    var freqMap = {};
+    const wordsWithoutSpecialChars = this.state.firstValue
+      .replace(/[^A-Za-z']/g, " ")
       .replace(/[0-9]/g, " ")
+      .toLowerCase()
       .split(" ")
       .filter((word) => word.trim());
-    // console.log(input);
-    for (let i = 0; i < input.length; i++) {
-      var word = input[i];
-      if (counts[word] === undefined) {
-        counts[word] = 1;
-        keys.push(word);
-      } else {
-        counts[word] += 1;
-        keys.push(word);
-        // console.log(keys);
-      }
-      keys.sort();
 
-      for (let i = 0; i < keys.length; i++) {
-        var key = keys[i];
-        var result = key + " - " + counts[key];
-        // console.log(result);
+    wordsWithoutSpecialChars.forEach((w) => {
+      if (!freqMap[w]) {
+        freqMap[w] = 0;
       }
-      this.setState({
-        wordSelectionCount: result,
-        // wordSelectionCount: input,
-      });
-    }
+      freqMap[w] += 1;
+    });
+
+    // let alphabeticSort = Object.keys(freqMap)
+    //   .sort()
+    //   .reduce((r, k) => ((r[k] = freqMap[k]), r), {});
+
+    const sortByHighest = Object.fromEntries(
+      Object.entries(freqMap).sort(([, a], [, b]) => b - a)
+    );
+
+    this.setState({
+      wordSelectionCount: sortByHighest,
+    });
   };
 
   render() {
@@ -77,9 +73,9 @@ class App extends Component {
     var withoutWhiteSpace = this.state.withoutWhiteSpace;
     var words = this.state.numberOfWords;
     var lines = this.state.linesCount;
-    console.log(this.state.wordSelectionCount);
-    // var wordCounts = this.state.wordSelectionCount;
-    // console.log(wordCounts);
+    var wordFrequencyCount = this.state.wordSelectionCount;
+
+    console.log(`test: ${this.state.firstValue}`);
 
     return (
       <div className="App">
@@ -98,25 +94,21 @@ class App extends Component {
               value={this.firstValue}
               onChange={this.firstHandle}
             />
-            <h1>Word Counting</h1>
-            {/* This button calls the wordCounter Method which should display all the Word listings */}
-            <button className="btn" onClick={this.wordCounter}>
-              Words Count
+            {/* This button calls the wordFrequencyCounter Method which counts the Word frequencies */}
+            <button className="btn" onClick={this.wordFrequencyCounter}>
+              Check Word Frequency
             </button>
-
-            {/* Have a feature which displays certain words and counts them for much they're used */}
-            <p>
-              <span>{this.state.wordSelectionCount}</span>
-            </p>
-
-            {/* {this.state.wordSelectionCount &&
-              Object.keys(this.state.wordSelectionCount).map((word, index) => {
-                return (
+            <h1>Word Frequency</h1>
+            {Object.entries(wordFrequencyCount).map(([word, count], i) => {
+              return (
+                <div key={i}>
                   <p>
-                    <span>{this.state.wordSelectionCount[word]}</span> - {word}
+                    <span>{word[0].toUpperCase() + word.slice(1)}</span> -{" "}
+                    {count > 1 ? `${count} Times` : "1 Time"}
                   </p>
-                );
-              })} */}
+                </div>
+              );
+            })}
           </form>
         </header>
       </div>
