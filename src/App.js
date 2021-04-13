@@ -54,9 +54,16 @@ class App extends Component {
       }
       freqMap[w] += 1;
     });
+    // let alphabeticSort = Object.keys(freqMap)
+    //   .sort()
+    //   .reduce((r, k) => ((r[k] = freqMap[k]), r), {});
+
+    const sortByHighest = Object.fromEntries(
+      Object.entries(freqMap).sort(([, a], [, b]) => b - a)
+    );
 
     this.setState({
-      wordSelectionCount: freqMap,
+      wordSelectionCount: sortByHighest,
     });
   };
 
