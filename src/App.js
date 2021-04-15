@@ -37,33 +37,35 @@ class App extends Component {
   };
 
   render() {
-    var firstValue = this.state.firstValue;
-    var numberOfCharacters = this.state.numberOfCharacters;
-    var withoutWhiteSpace = this.state.withoutWhiteSpace;
-    var words = this.state.numberOfWords;
-    var lines = this.state.linesCount;
+    let freqMap = {};
+    let numberOfCharacters = this.state.numberOfCharacters;
+    let withoutWhiteSpace = this.state.withoutWhiteSpace;
+    let words = this.state.numberOfWords;
+    let lines = this.state.linesCount;
+    let wordsWithoutSpecialChars = this.state.firstValue
+      .replace(/[^A-Za-z']/g, " ")
+      .replace(/[0-9]/g, " ")
+      .toLowerCase()
+      .split(" ")
+      .filter((word) => word.trim());
+
+    wordsWithoutSpecialChars.forEach((w) => {
+      if (!freqMap[w]) {
+        freqMap[w] = 0;
+      }
+      freqMap[w]++;
+    });
+
+    const sortKeysAToZ = Object.keys(freqMap)
+      .sort()
+      .reduce((r, k) => ((r[k] = freqMap[k]), r), {});
+
+    const sortByHighestToLowest = Object.fromEntries(
+      Object.entries(sortKeysAToZ).sort(([, a], [, b]) => b - a)
+    );
 
     function wordFrequencyCounter() {
-      let freqMap = {};
-      const wordsWithoutSpecialChars = firstValue
-        .replace(/[^A-Za-z']/g, " ")
-        .replace(/[0-9]/g, " ")
-        .toLowerCase()
-        .split(" ")
-        .filter((word) => word.trim());
-
-      wordsWithoutSpecialChars.forEach((w) => {
-        if (!freqMap[w]) {
-          freqMap[w] = 0;
-        }
-        freqMap[w] += 1;
-      });
-
-      const sortByHighest = Object.fromEntries(
-        Object.entries(freqMap).sort(([, a], [, b]) => b - a)
-      );
-
-      const wordsResult = Object.entries(sortByHighest).map(
+      const wordsResult = Object.entries(sortByHighestToLowest).map(
         ([word, count], i) => {
           return (
             <div key={i}>
@@ -76,6 +78,10 @@ class App extends Component {
         }
       );
       return wordsResult;
+    }
+
+    function hide(e) {
+      e.preventDefault();
     }
 
     return (
@@ -95,6 +101,9 @@ class App extends Component {
               value={this.firstValue}
               onChange={this.firstHandle}
             />
+            <button className="btn" onClick={hide}>
+              Show/Hide Frequency
+            </button>
             <h1>Word Frequency</h1>
             <div>{wordFrequencyCounter()}</div>
           </form>
