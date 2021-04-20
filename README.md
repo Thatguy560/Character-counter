@@ -9,7 +9,7 @@
   <img src="DemoOfApp.gif" alt="animated" />
 </p> -->
 
-A functional calculator made with React JS, I installed the 'Math.js' dependency to evaluate expressions. This app provides you with fundamental functionality to help solve rudimentary problems and basic Trigonometry.
+A character Counter app made with React. Once loaded you can type in the text area available and it will display the number of Characters used, the number of Characters without spaces, words and lines used. Additionally underneath it will count the word frequency and sort it out in alphabetical order.   
 
 # Visit the deployed app
 
@@ -31,7 +31,7 @@ You can find the deployed app on Heroku via the following link: https://my-chara
 
 2. This should then automatically open the app on your browser, however if it doesn't just open up any browser of your choosing and type in the url "http://localhost:3000/".
 
-3. Once the page is loaded, feel free to play around with it. 
+3. Once the page is loaded, feel free to play around with it. You type in the text area available and it will display the number of Characters used.
 
 # Technologies Used
 
