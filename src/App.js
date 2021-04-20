@@ -115,8 +115,8 @@ class App extends Component {
             <button className="btn" onClick={this.hide}>
               Show/Hide Frequency
             </button>
-            <div id="id">{wordFrequencyCounter()}</div>
             <h1 id="id2">Word Frequency</h1>
+            <div id="id">{wordFrequencyCounter()}</div>
           </form>
         </header>
       </div>

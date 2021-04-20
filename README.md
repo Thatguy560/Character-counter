@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Character Counter - Made With React 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<!-- To add GIF Image -->
 
-In the project directory, you can run:
+<!-- ![AppImage](https://raw.githubusercontent.com/Thatguy560/CalculatorReact/master/public/Screenshot%202020-07-14%20at%2018.31.32.png) -->
 
-### `yarn start`
+<!-- <p align="center">
+  <img src="DemoOfApp.gif" alt="animated" />
+</p> -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A functional calculator made with React JS, I installed the 'Math.js' dependency to evaluate expressions. This app provides you with fundamental functionality to help solve rudimentary problems and basic Trigonometry.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Visit the deployed app
 
-### `yarn test`
+You can find the deployed app on Heroku via the following link: https://my-character-counter.herokuapp.com/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Installation
 
-### `yarn build`
+1. Clone the repo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. type "git clone https://github.com/Thatguy560/Character-counter" in the terminal
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. cd into 'Character-counter' (Change directory's)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. npm install
 
-### `yarn eject`
+# Using The App Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Open up a terminal in your text editor and type 'npm start'
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. This should then automatically open the app on your browser, however if it doesn't just open up any browser of your choosing and type in the url "http://localhost:3000/".
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Once the page is loaded, feel free to play around with it. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Technologies Used
 
-## Learn More
+#### React, Javascript, HTML/CSS
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
