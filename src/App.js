@@ -36,6 +36,20 @@ class App extends Component {
     });
   };
 
+  hide = (e) => {
+    e.preventDefault();
+    // if (document.getElementById("id").innerHTML !== "") {
+    //   document.getElementById("id").innerHTML = "";
+    //   document.getElementById("id").style.visibility = "visible";
+    //   // document.getElementById("id2").style.visibility = "visible";
+    // } else {
+    //   // originalHTML;
+    //   // document.getElementById("id").innerHTML !== "";
+    //   document.getElementById("id").style.visibility = "hidden";
+    //   document.getElementById("id2").style.visibility = "hidden";
+    // }
+  };
+
   render() {
     let freqMap = {};
     let numberOfCharacters = this.state.numberOfCharacters;
@@ -80,15 +94,12 @@ class App extends Component {
       return wordsResult;
     }
 
-    function hide(e) {
-      e.preventDefault();
-    }
-
     return (
       <div className="App">
         <header className="App-header">
           <form>
             <h1>Character Counter</h1>
+            <br></br>
             <p>
               Characters <span>{numberOfCharacters}</span> Without White Space{" "}
               <span>{withoutWhiteSpace}</span> Words <span>{words}</span> Lines{" "}
@@ -101,11 +112,11 @@ class App extends Component {
               value={this.firstValue}
               onChange={this.firstHandle}
             />
-            <button className="btn" onClick={hide}>
+            <button className="btn" onClick={this.hide}>
               Show/Hide Frequency
             </button>
-            <h1>Word Frequency</h1>
-            <div>{wordFrequencyCounter()}</div>
+            <div id="id">{wordFrequencyCounter()}</div>
+            <h1 id="id2">Word Frequency</h1>
           </form>
         </header>
       </div>

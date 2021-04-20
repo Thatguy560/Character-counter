@@ -21,6 +21,7 @@
 .App p {
   color: #424d61;
   text-align: center;
+  visibility: visible;
 }
 
 .App span {
@@ -30,6 +31,7 @@
   padding: .2em .6em .3em;
   font-weight: 700px;
   margin-right: .35em;
+  /* visibility: hidden; */
 }
 
 .App textarea {
@@ -56,5 +58,11 @@
   box-shadow: 5px 10px 18px black;
 }
 
+.visible {
+  visibility: visible;
+}
 
+.hidden {
+  visibility: hidden;
+}
 
