@@ -36,17 +36,16 @@ class App extends Component {
     });
   };
 
-  hide = (e) => {
+  show = (e) => {
     e.preventDefault();
-    // if (document.getElementById("id").innerHTML !== "") {
-    //   document.getElementById("id").innerHTML = "";
-    //   document.getElementById("id").style.visibility = "visible";
-    //   // document.getElementById("id2").style.visibility = "visible";
+    // if ((document.getElementById("id").style.display = "none")) {
+    document.getElementById("id").style.display = "";
+    document.getElementById("id2").style.display = "";
     // } else {
-    //   // originalHTML;
-    //   // document.getElementById("id").innerHTML !== "";
-    //   document.getElementById("id").style.visibility = "hidden";
-    //   document.getElementById("id2").style.visibility = "hidden";
+    // document.getElementById("id").style.display = "none";
+    // document.getElementById("id").style.display = "revert";
+    // document.getElementById("id").style.visibility = "hidden";
+    // document.getElementById("id2").style.visibility = "hidden";
     // }
   };
 
@@ -99,7 +98,6 @@ class App extends Component {
         <header className="App-header">
           <form>
             <h1>Character Counter</h1>
-            <br></br>
             <p>
               Characters <span>{numberOfCharacters}</span> Without White Space{" "}
               <span>{withoutWhiteSpace}</span> Words <span>{words}</span> Lines{" "}
@@ -112,11 +110,15 @@ class App extends Component {
               value={this.firstValue}
               onChange={this.firstHandle}
             />
-            <button className="btn" onClick={this.hide}>
-              Show/Hide Frequency
+            <button className="btn" onClick={this.show}>
+              Display Word Frequency
             </button>
-            <h1 id="id2">Word Frequency</h1>
-            <div id="id">{wordFrequencyCounter()}</div>
+            <h1 id="id2" style={{ display: "none" }}>
+              Word Frequency
+            </h1>
+            <div id="id" style={{ display: "none" }}>
+              {wordFrequencyCounter()}
+            </div>
           </form>
         </header>
       </div>

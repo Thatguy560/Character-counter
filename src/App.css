@@ -16,6 +16,7 @@
   color: #5bc0de;
   font-family: "Chalkduster";
   letter-spacing: 5px;
+  margin-bottom: 40px;
 }
 
 .App p {
@@ -37,9 +38,9 @@
 .App textarea {
   background-color: white;
   min-width: 100%; 
+  max-height: 100%;
   min-height: 390px; /* Do as a percentage instead so it fits on all screens? */
   max-height: 390px;
-  max-height: 100%;
   display: block;
   border: 2px solid grey;
   border-radius: .25em;
@@ -58,11 +59,28 @@
   box-shadow: 5px 10px 18px black;
 }
 
-.visible {
-  visibility: visible;
+.App button {
+  background-color: #337ab7;;
+  color: black;
+  border: none;
+  padding: 7px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: .3s ease-out;
+  border-radius: .25em;
 }
 
-.hidden {
-  visibility: hidden;
+.App button:hover {
+  background-color: #0053ba;
+  color: white;
+  transition: .3s ease-in;
 }
+
+.App button:active {
+  background-color: whitesmoke;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+
 
