@@ -38,4 +38,3 @@ You can find the deployed app on Heroku via the following link: https://my-chara
 # To Do List
 
 - [ ] Have Lines counted correctly when text goes onto the next line.
-- [ ] Change "Display Word Frequency" button so you can hide/un-hide text.
