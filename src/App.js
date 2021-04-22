@@ -25,7 +25,7 @@ class App extends Component {
       input === "" ? 0 : input.split("").filter((char) => char !== " ").length;
     const words =
       input === "" ? 0 : input.split(" ").filter((word) => word.trim()).length;
-    const lines = input === "" ? 1 : input.split(/\n/g).length;
+    const lines = input === "" ? 0 : input.split(/\n/g).length;
 
     this.setState({
       firstValue: input,
@@ -36,17 +36,15 @@ class App extends Component {
     });
   };
 
-  show = (e) => {
+  showHide = (e) => {
     e.preventDefault();
-    // if ((document.getElementById("id").style.display = "none")) {
-    document.getElementById("id").style.display = "";
-    document.getElementById("id2").style.display = "";
-    // } else {
-    // document.getElementById("id").style.display = "none";
-    // document.getElementById("id").style.display = "revert";
-    // document.getElementById("id").style.visibility = "hidden";
-    // document.getElementById("id2").style.visibility = "hidden";
-    // }
+    if (document.getElementById("id").style.display !== "none") {
+      document.getElementById("id").style.display = "none";
+      document.getElementById("id2").style.display = "none";
+    } else {
+      document.getElementById("id").style.display = "block";
+      document.getElementById("id2").style.display = "block";
+    }
   };
 
   render() {
@@ -80,11 +78,16 @@ class App extends Component {
     function wordFrequencyCounter() {
       const wordsResult = Object.entries(sortByHighestToLowest).map(
         ([word, count], i) => {
+          const wordDensity = parseFloat(
+            (count * 100) / wordsWithoutSpecialChars.length
+          ).toFixed(2);
           return (
             <div key={i}>
               <p>
                 <span>{word[0].toUpperCase() + word.slice(1)}</span> -{" "}
-                {count > 1 ? `${count} Times` : "1 Time"}
+                {count > 1
+                  ? `${count} Times (${wordDensity}%)`
+                  : `1 Time (${wordDensity}%)`}
               </p>
             </div>
           );
@@ -110,8 +113,8 @@ class App extends Component {
               value={this.firstValue}
               onChange={this.firstHandle}
             />
-            <button className="btn" onClick={this.show}>
-              Display Word Frequency
+            <button className="btn" onClick={this.showHide}>
+              Show/Hide Word Frequency
             </button>
             <h1 id="id2" style={{ display: "none" }}>
               Word Frequency
