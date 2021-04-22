@@ -3,9 +3,9 @@
 
 <!-- To add GIF Image -->
 
-<!-- <p align="center">
+<p align="center">
   <img src="DemoOfApp.gif" alt="animated" />
-</p> -->
+</p>
 
 A character Counter app made with React. Once loaded you can type in the text area available and it will display the number of Characters used, the number of Characters without spaces, words and lines used. Additionally underneath it will count the word frequency and sort it out in alphabetical order.   
 
