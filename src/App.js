@@ -14,18 +14,20 @@ class App extends Component {
   }
 
   firstHandle = (event) => {
-    var input = event.target.value;
-
-    // Used to work out how many new lines have been entered in text box (Still needs to be fixed.)
-    const text = document.getElementById("textarea").value;
-    const linesCount = text.split("/\r|\r\n|\n/").length;
+    const input = event.target.value;
+    const textArea = document.getElementById("textarea");
+    const enteredLines = input.split(/\n/g).length;
+    const calculateNumberOfLines = Math.ceil(
+      textArea.value.length / textArea.cols
+    );
+    console.log(textArea.value.length / textArea.cols);
 
     const numberOfCharacters = input === "" ? 0 : input.split("").length;
     const withoutWhiteSpace =
       input === "" ? 0 : input.split("").filter((char) => char !== " ").length;
     const words =
       input === "" ? 0 : input.split(" ").filter((word) => word.trim()).length;
-    const lines = input === "" ? 0 : input.split(/\n/g).length;
+    const lines = input === "" ? 0 : calculateNumberOfLines + enteredLines - 1;
 
     this.setState({
       firstValue: input,
@@ -109,6 +111,7 @@ class App extends Component {
             <textarea
               id="textarea"
               type="text"
+              cols="73"
               placeholder="Please type some text..."
               value={this.firstValue}
               onChange={this.firstHandle}
@@ -130,9 +133,3 @@ class App extends Component {
 }
 
 export default App;
-
-// var h0 = document.getElementById("textarea").style.height;
-// document.getElementById("textarea").style.height = "auto";
-// var h1 = document.getElementById("textarea").scrollHeight;
-// document.getElementById("textarea").style.height = h0;
-// var lineHeight = 20;
