@@ -17,10 +17,10 @@ class App extends Component {
     const input = event.target.value;
     const textArea = document.getElementById("textarea");
     const enteredLines = input.split(/\n/g).length;
-    const calculateNumberOfLines = Math.ceil(
+    const calculateNumberOfLines = Math.round(
       textArea.value.length / textArea.cols
     );
-    console.log(textArea.value.length / textArea.cols);
+    console.log(Math.round(textArea.value.length / textArea.cols));
 
     const numberOfCharacters = input === "" ? 0 : input.split("").length;
     const withoutWhiteSpace =
